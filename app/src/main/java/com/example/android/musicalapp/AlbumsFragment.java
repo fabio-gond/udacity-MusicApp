@@ -70,7 +70,9 @@ public class AlbumsFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 // Create a new intent
                 Intent intent = new Intent(getActivity(), PlayerActivity.class);
-                //intent.putExtra(CATEGORY, "numbers");
+                intent.putExtra("title", songs.get(i).getTitle());
+                intent.putExtra("artist", songs.get(i).getArtist());
+                intent.putExtra("album", songs.get(i).getAlbum());
 
                 // Start the new activity
                 startActivity(intent);
