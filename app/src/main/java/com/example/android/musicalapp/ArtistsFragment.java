@@ -16,7 +16,10 @@ import java.util.ArrayList;
 
 public class ArtistsFragment extends Fragment {
     private ArrayList<Song> songs = new ArrayList<>();
+    private ArrayList<Song> songsCopy = new ArrayList<>();
     private static final String TAG = ArtistsFragment.class.getSimpleName();
+    private SongAdapter songAdapter;
+    private ListView listView;
 
     private ArtistsFragment.OnFragmentInteractionListener mListener;
 
@@ -29,6 +32,15 @@ public class ArtistsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+        }
+    }
+
+    public void filterSongs(String text){
+        songAdapter.clear();
+        for(int i=0 ; i<songsCopy.size() ; i++){
+            Song song = songsCopy.get(i);
+            if (song.getTitle().toLowerCase().contains(text.toLowerCase()))
+                songAdapter.add(song);
         }
     }
 
@@ -46,8 +58,11 @@ public class ArtistsFragment extends Fragment {
         songs.add(new Song("Life on Mars?", "Hunky Dory" , "David Bowie"));
         songs.add(new Song("Under Pressure", "Hot Space" , "David Bowie"));
 
-        SongAdapter songAdapter = new SongAdapter(getActivity(), songs);
-        ListView listView = view.findViewById(R.id.artists_list);
+        // Copy for the filter
+        songsCopy.addAll(songs);
+
+        songAdapter = new SongAdapter(getActivity(), songs);
+        listView = view.findViewById(R.id.artists_list);
         listView.setAdapter(songAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -68,12 +83,6 @@ public class ArtistsFragment extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -103,7 +112,5 @@ public class ArtistsFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 }

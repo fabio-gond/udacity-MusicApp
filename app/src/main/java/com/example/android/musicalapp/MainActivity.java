@@ -14,6 +14,8 @@ import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity implements AlbumsFragment.OnFragmentInteractionListener , FoldersFragment.OnFragmentInteractionListener , ArtistsFragment.OnFragmentInteractionListener {
     private int currentTab = 0;
+    private ViewPager viewPager;
+    private PagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements AlbumsFragment.On
         tabLayout.addTab(tabLayout.newTab().setText("Folders"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = findViewById(R.id.main_viewPager);
-        final PagerAdapter adapter = new PagerAdapter
+        viewPager = findViewById(R.id.main_viewPager);
+        adapter = new PagerAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -67,10 +69,8 @@ public class MainActivity extends AppCompatActivity implements AlbumsFragment.On
     }
 
     private void searchText(String text){
-        /*Fragment currentFragment = new Fragment();
-        switch (currentTab){
-            case 0:
-        }*/
+        ArtistsFragment currentFragment = (ArtistsFragment) adapter.getRegisteredFragment(viewPager.getCurrentItem());
+        currentFragment.filterSongs(text);
     }
 
     @Override
