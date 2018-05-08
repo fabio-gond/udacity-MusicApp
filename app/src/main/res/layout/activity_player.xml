@@ -30,7 +30,7 @@
             android:id="@+id/player_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title Test"
+            android:text="@string/player_titleTest"
             android:textSize="22sp"
             android:textAlignment="center"
             android:textColor="@android:color/white"/>
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="Subtitle Test"
+            android:text="@string/player_subtitleTest"
             android:textAlignment="center"
             android:textColor="@android:color/white"/>
         <SeekBar
@@ -71,6 +71,12 @@
                 android:layout_height="20dp"
                 android:layout_weight="1"/>
         </LinearLayout>
+
+        <Button
+            android:text="@string/player_backButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="goBack"/>
 
     </LinearLayout>
 

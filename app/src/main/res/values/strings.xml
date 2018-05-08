@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">MusicalApp</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="albums_testText"><![CDATA[The Clash > Combat Rock]]></string>
+    <string name="folders_testText">/music/old-rock</string>
+    <string name="artists_testText">David Bowie</string>
+    <string name="songItem_titleTest">Title test</string>
+    <string name="songItem_infoTest">Info text</string>
+    <string name="player_titleTest">Title Test</string>
+    <string name="player_subtitleTest">Subtitle Test</string>
+    <string name="player_backButton">Back to songs list</string>
 </resources>
