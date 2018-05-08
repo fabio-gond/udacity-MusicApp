@@ -25,12 +25,24 @@ import java.util.ArrayList;
  */
 public class AlbumsFragment extends Fragment {
     private ArrayList<Song> songs = new ArrayList<>();
+    private ArrayList<Song> songsCopy = new ArrayList<>();
     private static final String TAG = AlbumsFragment.class.getSimpleName();
+    private SongAdapter songAdapter;
+    private ListView listView;
 
     private OnFragmentInteractionListener mListener;
 
     public AlbumsFragment() {
         // Required empty public constructor
+    }
+
+    public void filterSongs(String text){
+        songAdapter.clear();
+        for(int i=0 ; i<songsCopy.size() ; i++){
+            Song song = songsCopy.get(i);
+            if (song.getTitle().toLowerCase().contains(text.toLowerCase()))
+                songAdapter.add(song);
+        }
     }
 
 
@@ -53,8 +65,11 @@ public class AlbumsFragment extends Fragment {
         songs.add(new Song("Overpowered by Funk", "The Clash" , "Combat Rock"));
         songs.add(new Song("Atom Tan", "The Clash" , "Combat Rock"));
 
-        SongAdapter songAdapter = new SongAdapter(getActivity(), songs);
-        ListView listView = view.findViewById(R.id.albums_list);
+        // Copy for the filter
+        songsCopy.addAll(songs);
+
+        songAdapter = new SongAdapter(getActivity(), songs);
+        listView = view.findViewById(R.id.albums_list);
         listView.setAdapter(songAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

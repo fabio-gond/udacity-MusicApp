@@ -16,6 +16,9 @@ public class MainActivity extends AppCompatActivity implements AlbumsFragment.On
     private int currentTab = 0;
     private ViewPager viewPager;
     private PagerAdapter adapter;
+    final int ARTISTS_TAB = 0;
+    final int ALBUMS_TAB = 1;
+    final int FOLDERS_TAB = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +72,22 @@ public class MainActivity extends AppCompatActivity implements AlbumsFragment.On
     }
 
     private void searchText(String text){
-        ArtistsFragment currentFragment = (ArtistsFragment) adapter.getRegisteredFragment(viewPager.getCurrentItem());
-        currentFragment.filterSongs(text);
+        switch(currentTab){
+            case ARTISTS_TAB: {
+                ArtistsFragment currentFragment = (ArtistsFragment) adapter.getRegisteredFragment(viewPager.getCurrentItem());
+                currentFragment.filterSongs(text); }
+                break;
+            case ALBUMS_TAB: {
+                AlbumsFragment currentFragment = (AlbumsFragment) adapter.getRegisteredFragment(viewPager.getCurrentItem());
+                currentFragment.filterSongs(text); }
+                break;
+            case FOLDERS_TAB: {
+                FoldersFragment currentFragment = (FoldersFragment) adapter.getRegisteredFragment(viewPager.getCurrentItem());
+                currentFragment.filterSongs(text); }
+                break;
+
+        }
+
     }
 
     @Override
