@@ -13,14 +13,8 @@
         android:text="The Clash > Combat Rock" />
 
     <ListView
-        android:layout_weight="1"
         android:id="@+id/albums_list"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingBottom="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp"/>
+        style="@style/SongsListView"
+        android:layout_width="match_parent"/>
 
 </LinearLayout>
